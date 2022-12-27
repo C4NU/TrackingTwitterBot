@@ -24,7 +24,9 @@ class TelegramBot:
 			telegram.InlineKeyboardButton('Account', callback_data = 1),
 			telegram.InlineKeyboardButton('Hash Tag', callback_data = 2)
 		],[
-			telegram.InlineKeyboardButton('Cancel', callback_data= 3)
+			telegram.InlineKeyboardButton('Show Tracking List', callback_data = 3)
+		],[
+			telegram.InlineKeyboardButton('Cancel', callback_data = 4)
 		]]
 		# 버튼 callback 입력받을 변수
 		reply = telegram.InlineKeyboardMarkup(taskButtons)
@@ -50,12 +52,6 @@ class TelegramBot:
 		elif data == 3:
 			self.GetTrackingObjects(query = query, data = data)
 
-		context.bot.edit_message_text(
-			chat_id=query.message.chat_id,
-			message_id = query.message.message_id,
-			text = '[{}] Task Complete.'.format(data)
-		)
-	
 	def SetTrackingAccount(self, update, context, query, data):
 		
 		context.bot.edit_message_text(
@@ -72,10 +68,11 @@ class TelegramBot:
 		)
 
 	def GetTrackingObjects(self, update, context, query, data):
-		print("Get Tracking Objects..")
-	
-	
-
+		context.bot.edit_message_text(
+		chat_id=query.message.chat_id,
+		message_id = query.message.message_id,
+		text = '[{}] Task Complete.'.format(data)
+		)
 
 
 	# CommandHandler 생성 함수

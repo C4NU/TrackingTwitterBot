@@ -47,6 +47,8 @@ class TelegramBot:
 			self.SetTrackingAccount(query = query, data = data)
 		elif data == 2:
 			self.SetTrackingHashtag(query = query, data = data)
+		elif data == 3:
+			self.GetTrackingObjects(query = query, data = data)
 
 		context.bot.edit_message_text(
 			chat_id=query.message.chat_id,
@@ -55,6 +57,7 @@ class TelegramBot:
 		)
 	
 	def SetTrackingAccount(self, update, context, query, data):
+		
 		context.bot.edit_message_text(
 		chat_id=query.message.chat_id,
 		message_id = query.message.message_id,
@@ -67,6 +70,9 @@ class TelegramBot:
 		message_id = query.message.message_id,
 		text = '[{}] Task Complete.'.format(data)
 		)
+
+	def GetTrackingObjects(self, update, context, query, data):
+		print("Get Tracking Objects..")
 	
 	
 
